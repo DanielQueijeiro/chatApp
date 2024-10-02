@@ -1,20 +1,31 @@
 package com.itesm.my_chat_live
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        // Find the buttons by their IDs
+        val signUpButton: Button = findViewById(R.id.btn_sign_up)
+        val loginButton: Button = findViewById(R.id.btn_login)
+
+        // Set click listeners for the buttons
+        signUpButton.setOnClickListener {
+            // Start SignInActivity
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+        loginButton.setOnClickListener {
+            // Start LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
